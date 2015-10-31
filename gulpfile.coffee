@@ -6,6 +6,7 @@ uglify = require 'gulp-uglify'
 concat = require 'gulp-concat'
 browserify = require 'gulp-browserify'
 rename = require 'gulp-rename'
+connect = require 'gulp-connect'
 
 
 gulp.task 'coffee', ->
@@ -22,6 +23,11 @@ gulp.task 'watch-coffee', ->
         './cs/*.coffee'
     ], ['coffee']
 
+gulp.task 'serve', ->
+  connect.server()
+
 gulp.task 'watch-all', ['watch-coffee']
 gulp.task 'build', ['coffee']
-gulp.task 'watch', ['build', 'watch-coffee']
+gulp.task 'watch', ['build', 'watch-coffee', 'serve']
+
+gulp.task 'default', ['watch']
